@@ -1,21 +1,20 @@
-.board-filter {
+.filter-container {
+  margin: 1rem 0;
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
-.filter-button {
+.filter-container button {
   padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: #f0f0f0;
+  border: none;
+  background-color: #eeeeee;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
 }
 
-.filter-button.active {
-  background-color: #222;
-  color: #fff;
-  border-color: #222;
+.filter-container button:hover {
+  background-color: #dcdcdc;
 }

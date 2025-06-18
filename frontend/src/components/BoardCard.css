@@ -1,49 +1,81 @@
 .board-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.board-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.board-title {
-  margin-top: 1rem;
-  font-size: 1.25rem;
-}
-
-.board-description,
-.board-category,
-.board-author {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-}
-
-.board-actions {
-  margin-top: 1rem;
-}
-
-.view-button,
-.delete-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  margin-right: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
   cursor: pointer;
+  width: 300px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.board-card:hover {
+  transform: translateY(-5px);
+}
+
+.board-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-card-content {
+  padding: 15px;
+}
+
+.board-card-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.board-card-content p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.board-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px;
+}
+
+.board-card-footer button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.board-card-footer button:hover {
+  background-color: #c0392b;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .view-button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #e0f7fa;
+  color: #00796b;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.delete-button {
-  background-color: #ff4d4f;
-  color: #fff;
+.view-button:hover {
+  background-color: #b2ebf2;
 }

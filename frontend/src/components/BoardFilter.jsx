@@ -3,20 +3,20 @@ import './BoardFilter.css';
 
 const categories = ['All', 'Recent', 'Celebration', 'Thank You', 'Inspiration'];
 
-function BoardFilter({ setCategoryFilter, categoryFilter }) {
+const BoardFilter = ({ filter, setFilter }) => {
   return (
-    <div className="board-filter">
-      {categories.map((category) => (
+    <div className="filter-container">
+      {categories.map(category => (
         <button
           key={category}
-          onClick={() => setCategoryFilter(category)}
-          className={categoryFilter === category ? 'active' : ''}
+          className={filter.toLowerCase() === category.toLowerCase() ? 'active' : ''}
+          onClick={() => setFilter(category.toLowerCase())}
         >
           {category}
         </button>
       ))}
     </div>
   );
-}
+};
 
 export default BoardFilter;

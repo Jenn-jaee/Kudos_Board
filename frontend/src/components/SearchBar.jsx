@@ -1,17 +1,22 @@
 import React from 'react';
 import './SearchBar.css';
 
-function SearchBar({ searchQuery, setSearchQuery }) {
+function SearchBar({ search, setSearch }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Nothing extra needed since the filtering happens on the parent
+  };
+
   return (
-    <div className="search-bar">
+    <form className="search-bar" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Search boards..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search boards by title..."
       />
-      <button onClick={() => setSearchQuery('')}>Clear</button>
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 }
 
