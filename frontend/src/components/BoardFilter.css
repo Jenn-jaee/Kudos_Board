@@ -1,0 +1,21 @@
+.board-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.filter-button.active {
+  background-color: #222;
+  color: #fff;
+  border-color: #222;
+}
