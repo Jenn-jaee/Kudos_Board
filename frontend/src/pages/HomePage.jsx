@@ -68,9 +68,7 @@ function HomePage() {
     <div className="home-container">
       <div className="controls-container">
 
-        <h1>Kudos Dashboard</h1>
-
-
+        <Header/>
         <SearchBar search={search} setSearch={setSearch} />
         <BoardFilter filter={filter} setFilter={setFilter} />
 
