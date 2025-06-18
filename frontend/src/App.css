@@ -1,0 +1,25 @@
+/* Base Reset */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Global container class you can reuse */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Optional default layout tweaks */
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-weight: 600;
+}

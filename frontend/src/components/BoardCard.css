@@ -1,0 +1,49 @@
+.board-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.board-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.board-title {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+
+.board-description,
+.board-category,
+.board-author {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.board-actions {
+  margin-top: 1rem;
+}
+
+.view-button,
+.delete-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.view-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.delete-button {
+  background-color: #ff4d4f;
+  color: #fff;
+}
