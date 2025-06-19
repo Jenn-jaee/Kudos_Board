@@ -9,7 +9,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/board/:boardId" element={<BoardPage />} />
+        <Route path="/boards/:boardId" element={<BoardPage />} />
       </Routes>
     </Router>
   );
