@@ -58,18 +58,20 @@ function HomePage() {
       .catch(err => console.error('Error creating board:', err));
   };
 
-  function isWithinLastHour(timestamp) {
-  const currentTime = new Date();
-  const timestampDate = new Date(timestamp);
-  const oneHourAgo = new Date(currentTime.getTime() - 60 * 60 * 1000);
-  return timestampDate >= oneHourAgo;
-}
 
-  const filteredBoards = boards.filter(board => {
-    const matchesCategory = filter === 'all' || board.category.toLowerCase() === filter || (filter === 'recent' && isWithinLastHour(board.createdAt));
-    const matchesSearch = board.title.toLowerCase().includes(search.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const applyFilter = () => {
+    if (filter === "recent") 
+      {return boards.slice(0, 6)}
+    else 
+    {
+      return boards.filter(board => {
+      const matchesCategory = filter === 'all' || board.category.toLowerCase() === filter;
+      const matchesSearch = board.title.toLowerCase().includes(search.toLowerCase());
+      return matchesCategory && matchesSearch;
+      })
+    
+  }};
+  const filteredBoards = applyFilter();
 
   return (
     <div className="home-container">
