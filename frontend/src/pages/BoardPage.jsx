@@ -25,14 +25,19 @@ function BoardPage() {
     setNewCard(prev => ({ ...prev, [name]: value }));
   };
 
-  // Submit new card
+
+
+  // modified Submit new card
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:5000/api/cards/boards/${boardId}/cards`, {
+    const cardData = { ...newCard, boardId }; // Include boardId in the body
+
+    const res = await fetch(`http://localhost:5000/api/cards`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newCard),
+      body: JSON.stringify(cardData),
     });
 
     const data = await res.json();
@@ -40,7 +45,8 @@ function BoardPage() {
       setCards(prev => [data, ...prev]);
       setNewCard({ title: '', description: '', gif: '', author: '' });
     }
-  };
+};
+
 
   if (!board) return <p>Loading...</p>;
 
