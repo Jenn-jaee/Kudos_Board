@@ -9,9 +9,10 @@ const BoardCard = ({ board, onDelete }) => {
     navigate(`/boards/${board.id}`);
   };
 
+  console.log(board)
   return (
     <div className="board-card">
-      <img src={board.imageUrl} alt={board.title} className="board-card-image" />
+      <img src={board.image} alt={board.title} className="board-card-image" />
       <div className="board-card-content">
         <h3>{board.title}</h3>
         <p>{board.description}</p>
