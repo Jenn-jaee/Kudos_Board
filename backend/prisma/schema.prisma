@@ -20,7 +20,7 @@ model Board {
   description String
   category    String
   image       String
-  author      String
+  author      String?
   createdAt   DateTime @default(now())
   cards       Card[]
 }
@@ -30,7 +30,7 @@ model Card {
   title       String
   description String
   gif         String
-  author      String
+  author      String?
   upvotes     Int     @default(0)
   createdAt   DateTime @default(now())
   boardId     Int

@@ -1,5 +1,5 @@
 require('dotenv').config();
-console.log('✅ index.js loaded and running');
+console.log('index.js loaded and running');
 
 const express = require('express');
 const cors = require('cors');
@@ -17,11 +17,10 @@ app.use(express.json());
 const validateBoard = (req, res, next) => {
   const { title, description, category, author } = req.body;
   
-  if (!title || !description || !category || !author) {
-    return res.status(400).json({ 
-      error: 'Missing required fields: title, description, category, and author are required' 
-    });
+  if (!title || !description || !category) {
+    return res.status(400).json({ error: 'Title, description, and category are required.' });
   }
+
   
   if (title.length < 1 || title.length > 100) {
     return res.status(400).json({ 
@@ -35,9 +34,9 @@ const validateBoard = (req, res, next) => {
 const validateCard = (req, res, next) => {
   const { title, description, author, boardId } = req.body;
   
-  if (!title || !description || !author || !boardId) {
+  if (!title || !description || !boardId) {
     return res.status(400).json({ 
-      error: 'Missing required fields: title, description, author, and boardId are required' 
+      error: 'Missing required fields: title, description, and boardId are required' 
     });
   }
   
@@ -59,7 +58,10 @@ app.get('/', (req, res) => {
 
 // ✅ CREATE Board
 app.post('/api/boards', validateBoard, async (req, res) => {
-  const { title, description, category, image, author } = req.body;
+  let { title, description, category, image, author } = req.body;
+
+  if (!image || image.trim() === '') {
+    image = `https://loremflickr.com/500/300/${category}`;  }
   
   try {
     const newBoard = await prisma.board.create({
@@ -67,7 +69,7 @@ app.post('/api/boards', validateBoard, async (req, res) => {
         title, 
         description, 
         category, 
-        image: image || '', 
+        image: image?.trim() || '',
         author 
       },
     });
@@ -193,15 +195,18 @@ app.post('/api/cards', validateCard, async (req, res) => {
       return res.status(404).json({ error: 'Board not found' });
     }
     
+    const cardData = {
+      title,
+      description,
+      gif: gif || '',
+      boardId: parseInt(boardId),
+      ...(author && { author })  // ⬅️ Only include author if provided
+    };
+
     const newCard = await prisma.card.create({
-      data: { 
-        title, 
-        description, 
-        gif: gif || '', 
-        author, 
-        boardId: parseInt(boardId)
-      },
+      data: cardData,
     });
+    
     res.status(201).json(newCard);
   } catch (error) {
     console.error('❌ Error creating card:', error);
