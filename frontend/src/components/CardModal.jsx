@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CardModal.css';
 
-const GIPHY_API_KEY = 'rtaPzRneJcnGXAPZnafInPz0ZgFkofyo';
+
 
 const CardModal = ({ show, onClose, onChange, onSubmit, cardData }) => {
   const [gifSearch, setGifSearch] = useState('');
@@ -10,7 +10,7 @@ const CardModal = ({ show, onClose, onChange, onSubmit, cardData }) => {
   const handleGifSearch = () => {
     if (!gifSearch) return;
 
-    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${gifSearch}&limit=6`)
+    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${import.meta.env.VITE_GIPHY_API_KEY}&q=${gifSearch}&limit=6`)
       .then(res => res.json())
       .then(data => setGifResults(data.data))
       .catch(err => console.error('Error fetching GIFs:', err));
