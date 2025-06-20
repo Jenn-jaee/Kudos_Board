@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import BoardFilter from '../components/BoardFilter';
 import BoardCard from '../components/BoardCard';
+import BoardModal from '../components/BoardModal';
+
 import './HomePage.css';
 
 function HomePage() {
@@ -81,24 +83,18 @@ function HomePage() {
         <SearchBar search={search} setSearch={setSearch} />
         <BoardFilter filter={filter} setFilter={setFilter} />
 
-        <button onClick={() => setShowForm(!showForm)}>
+        <button className="createBoardBtn" onClick={() => setShowForm(!showForm)}>
           {showForm ? 'Cancel' : 'Create New Board'}
         </button>
       </div>
 
       {showForm && (
-        <form className="new-board-form" onSubmit={handleSubmit}>
-          <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required />
-          <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
-          <select name="category" value={formData.category} onChange={handleChange}>
-            <option value="celebration">Celebration</option>
-            <option value="thank you">Thank You</option>
-            <option value="inspiration">Inspiration</option>
-          </select>
-          <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} required />
-          <input type="text" name="author" placeholder="Author (optional)" value={formData.author} onChange={handleChange} />
-          <button type="submit">Create Board</button>
-        </form>
+        <BoardModal
+          formData={formData}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          onClose={() => setShowForm(false)}
+        />
       )}
 
       {loading ? (

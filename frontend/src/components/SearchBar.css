@@ -26,3 +26,9 @@
   background-color: #bbb;
   color: black;
 }
+
+.clear-button {
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #ccc;
+}

@@ -7,6 +7,10 @@ function SearchBar({ search, setSearch }) {
     // Nothing extra needed since the filtering happens on the parent
   };
 
+  const handleClear = () => {
+    setSearch('');
+  };
+
   return (
     <form className="search-bar" onSubmit={handleSubmit}>
       <input
@@ -16,6 +20,11 @@ function SearchBar({ search, setSearch }) {
         placeholder="Search boards by title..."
       />
       <button type="submit">Search</button>
+      {search && (
+        <button type="button" onClick={handleClear} className="clear-button">
+          Clear
+        </button>
+      )}
     </form>
   );
 }

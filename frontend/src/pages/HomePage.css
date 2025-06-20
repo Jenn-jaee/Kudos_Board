@@ -16,6 +16,10 @@
   gap: 0.5rem;
 }
 
+.createBoardBtn{
+  background-color: mediumpurple;
+  border-radius: 10px;
+}
 .filter-container button.active {
   background-color: #007bff;
   color: white;
