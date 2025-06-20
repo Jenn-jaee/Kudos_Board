@@ -32,7 +32,7 @@ function App() {
 />
 
 <Route
-  path="/boards/:id"
+  path="/boards/:boardId"
   element={<BoardPage toggleTheme={toggleTheme} theme={theme} />}
 />
 
