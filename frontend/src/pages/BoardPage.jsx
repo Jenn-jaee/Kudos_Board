@@ -5,7 +5,7 @@ import CardModal from '../components/CardModal';
 
 import './BoardPage.css';
 
-function BoardPage() {
+function BoardPage({ toggleTheme, theme }) {
   const { boardId } = useParams();
   const [board, setBoard] = useState(null);
   const [cards, setCards] = useState([]);
@@ -96,6 +96,10 @@ function BoardPage() {
       <button className="back-button" onClick={() => navigate('/')}>
         ← Back
       </button>
+      <button onClick={toggleTheme} className="theme-toggle-btn">
+        {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      </button>
+
       <h2>{board.title}</h2>
       <p><strong>Category:</strong> {board.category}</p>
       <p><strong>Author:</strong> {board.author}</p>

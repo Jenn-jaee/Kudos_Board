@@ -8,7 +8,7 @@ import BoardModal from '../components/BoardModal';
 
 import './HomePage.css';
 
-function HomePage() {
+function HomePage({ toggleTheme, theme }) {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -102,6 +102,10 @@ function HomePage() {
 
         <Header/>
         <SearchBar search={search} setSearch={setSearch} />
+        <button onClick={toggleTheme} className="theme-toggle-btn">
+          {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+        </button>
+
         <BoardFilter filter={filter} setFilter={setFilter} />
 
         <button className="createBoardBtn" onClick={() => setShowForm(!showForm)}>

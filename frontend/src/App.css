@@ -24,3 +24,29 @@ h1, h2, h3, h4, h5 {
   margin: 0;
   font-weight: 600;
 }
+/* Default Light Theme */
+body.light {
+  background-color: #f7f7f7;
+  color: #222;
+}
+
+/* Dark Mode Theme */
+body.dark {
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+/* Optional: dark mode styles for buttons */
+button {
+  transition: all 0.3s ease;
+}
+
+body.dark button {
+  background-color: #333;
+  color: white;
+}
+
+body.light button {
+  background-color: #eee;
+  color: black;
+}
