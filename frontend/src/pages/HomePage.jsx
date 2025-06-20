@@ -50,7 +50,7 @@ function HomePage() {
   const cleanedFormData = {
     ...formData,
     image: formData.image.trim() === ''
-      ? `https://loremflickr.com/500/300/${formData.category}`
+      ? `https://loremflickr.com/500/300/${formData.category}&sig=${Math.floor(Math.random() * 1000)}`
       : formData.image,
   };
 
