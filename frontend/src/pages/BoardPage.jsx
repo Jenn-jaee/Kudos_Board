@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
 import CardItem from '../components/CardItem';
 import CardModal from '../components/CardModal';
+
 import './BoardPage.css';
 
 function BoardPage() {
@@ -10,6 +11,8 @@ function BoardPage() {
   const [cards, setCards] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newCard, setNewCard] = useState({ title: '', description: '', gif: '', author: '' });
+  const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -20,6 +23,30 @@ function BoardPage() {
         setCards(data.cards || []);
       });
   }, [boardId]);
+
+
+  //for cards
+  const handleUpvote = async (cardId) => {
+  const res = await fetch(`http://localhost:5000/api/cards/${cardId}/upvote`, {
+    method: 'PATCH',
+  });
+
+  if (res.ok) {
+    const updatedCard = await res.json();
+    setCards(prev => prev.map(card => card.id === cardId ? updatedCard : card));
+  }
+  };
+
+  const handleDelete = async (cardId) => {
+    const res = await fetch(`http://localhost:5000/api/cards/${cardId}`, {
+      method: 'DELETE',
+    });
+
+    if (res.ok) {
+      setCards(prev => prev.filter(card => card.id !== cardId));
+    }
+  };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,6 +76,9 @@ function BoardPage() {
 
   return (
     <div className="board-page">
+      <button className="back-button" onClick={() => navigate('/')}>
+        ← Back
+      </button>
       <h2>{board.title}</h2>
       <p><strong>Category:</strong> {board.category}</p>
       <p><strong>Author:</strong> {board.author}</p>
@@ -67,8 +97,16 @@ function BoardPage() {
       />
 
       <div className="card-grid">
-        {cards.map(card => <CardItem key={card.id} card={card} />)}
-      </div>
+        {cards.map(card => (
+          <CardItem
+            key={card.id}
+            card={card}
+            onUpvote={handleUpvote}
+            onDelete={handleDelete}
+          />
+      ))}
+</div>
+
     </div>
   );
 }

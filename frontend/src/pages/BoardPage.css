@@ -58,3 +58,13 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 }
+
+.back-button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #e690bb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
