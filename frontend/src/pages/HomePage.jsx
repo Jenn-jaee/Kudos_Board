@@ -44,21 +44,42 @@ function HomePage() {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    fetch('http://localhost:5000/api/boards', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    })
-      .then(res => res.json())
-      .then(newBoard => {
-        setBoards(prev => [newBoard, ...prev]);
-        setFormData({ title: '', description: '', category: 'celebration', image: '', author: '' });
-        setShowForm(false);
-      })
-      .catch(err => console.error('Error creating board:', err));
+  const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const cleanedFormData = {
+    ...formData,
+    image: formData.image.trim() === ''
+      ? `https://loremflickr.com/500/300/${formData.category}`
+      : formData.image,
   };
+
+  console.log('🔍 Submitting board:', cleanedFormData);
+
+  fetch('http://localhost:5000/api/boards', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cleanedFormData),
+  })
+    .then(async res => {
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error('❌ Server responded with error:', data);
+        throw new Error(data.error || 'Unknown error');
+      }
+
+      setBoards(prev => [data, ...prev]);
+      setFormData({ title: '', description: '', category: 'celebration', image: '', author: '' });
+      setShowForm(false);
+    })
+    .catch(err => {
+      console.error('🔥 Caught error while submitting:', err.message);
+      alert(`Failed to create board: ${err.message}`);
+    });
+};
+
+
 
 
   const applyFilter = () => {

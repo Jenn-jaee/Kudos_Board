@@ -31,10 +31,11 @@ const BoardCard = ({ board }) => {
   return (
     <div className="board-card">
       <img
-        src={board.image || 'https://via.placeholder.com/150'} // prevent empty image
+        src={board?.image?.trim() !== '' ? board.image : 'https://via.placeholder.com/150'}
         alt={board.title}
         className="board-card-image"
       />
+
       <div className="board-card-content">
         <h3>{board.title}</h3>
         <p>{board.description}</p>

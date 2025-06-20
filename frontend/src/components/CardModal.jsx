@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './CardModal.css';
 
 const GIPHY_API_KEY = 'rtaPzRneJcnGXAPZnafInPz0ZgFkofyo';
@@ -7,19 +7,14 @@ const CardModal = ({ show, onClose, onChange, onSubmit, cardData }) => {
   const [gifSearch, setGifSearch] = useState('');
   const [gifResults, setGifResults] = useState([]);
 
-  // ✅ Always declare hooks before conditional returns
-  useEffect(() => {
+  const handleGifSearch = () => {
     if (!gifSearch) return;
-    
-    const timer = setTimeout(() => {
-      fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${gifSearch}&limit=6`)
-        .then(res => res.json())
-        .then(data => setGifResults(data.data))
-        .catch(err => console.error('Error fetching GIFs:', err));
-    }, 500);
 
-    return () => clearTimeout(timer); // Cleanup debounce
-  }, [gifSearch]);
+    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${gifSearch}&limit=6`)
+      .then(res => res.json())
+      .then(data => setGifResults(data.data))
+      .catch(err => console.error('Error fetching GIFs:', err));
+  };
 
   const handleGifSelect = (gifUrl) => {
     onChange({ target: { name: 'gif', value: gifUrl } });
@@ -27,7 +22,6 @@ const CardModal = ({ show, onClose, onChange, onSubmit, cardData }) => {
     setGifResults([]);
   };
 
-  // ✅ Safe to return early AFTER all hooks
   if (!show) return null;
 
   return (
@@ -40,12 +34,15 @@ const CardModal = ({ show, onClose, onChange, onSubmit, cardData }) => {
           <input name="description" value={cardData.description} onChange={onChange} placeholder="Description" required />
           <input name="gif" value={cardData.gif} onChange={onChange} placeholder="GIF URL" required />
 
-          <input
-            type="text"
-            placeholder="Search for a GIF..."
-            value={gifSearch}
-            onChange={(e) => setGifSearch(e.target.value)}
-          />
+          <div className="gif-search-section">
+            <input
+              type="text"
+              placeholder="Search for a GIF..."
+              value={gifSearch}
+              onChange={(e) => setGifSearch(e.target.value)}
+            />
+            <button type="button" onClick={handleGifSearch}>Search GIF</button>
+          </div>
 
           <div className="gif-results">
             {gifResults.map((gif) => (

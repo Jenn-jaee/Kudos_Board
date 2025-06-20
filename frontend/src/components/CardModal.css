@@ -74,3 +74,34 @@
   transform: scale(1.05);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
+
+.gif-search-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.gif-search-section input {
+  flex-grow: 1;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.gif-search-button {
+  padding: 0.7rem 1.2rem;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.gif-search-button:hover {
+  background-color: #218838;
+}
+

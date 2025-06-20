@@ -54,23 +54,40 @@ function BoardPage() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const cardData = { ...newCard, boardId };
+  console.log('🔍 newCard raw:', newCard);
 
-    const res = await fetch(`http://localhost:5000/api/cards`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(cardData),
-    });
+  const { title, description, gif, author } = newCard;
 
-    const data = await res.json();
-    if (res.ok) {
-      setCards(prev => [data, ...prev]);
-      setNewCard({ title: '', description: '', gif: '', author: '' });
-      setShowModal(false);
-    }
+  // Build the cardData and only include author if it's not empty
+  const cardData = {
+    title,
+    description,
+    gif,
+    boardId
   };
+
+  if (author.trim()) {
+    cardData.author = author;
+  }
+  
+  console.log('🟢 Submitting cardData:', cardData); // 👈 LOG IT
+
+  const res = await fetch(`http://localhost:5000/api/cards`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cardData),
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    setCards(prev => [data, ...prev]);
+    setNewCard({ title: '', description: '', gif: '', author: '' });
+    setShowModal(false);
+  }
+};
+
 
   if (!board) return <p>Loading...</p>;
 
