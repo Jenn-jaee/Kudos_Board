@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CardItem from '../components/CardItem';
-import './BoardPage.css'; // for styling
+import CardModal from '../components/CardModal';
+import './BoardPage.css';
 
 function BoardPage() {
   const { boardId } = useParams();
   const [board, setBoard] = useState(null);
   const [cards, setCards] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [newCard, setNewCard] = useState({ title: '', description: '', gif: '', author: '' });
 
-  // Fetch board and card details
+
   useEffect(() => {
     fetch(`http://localhost:5000/api/boards/${boardId}`)
       .then(res => res.json())
@@ -19,20 +21,15 @@ function BoardPage() {
       });
   }, [boardId]);
 
-  // Handle form changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewCard(prev => ({ ...prev, [name]: value }));
   };
 
-
-
-  // modified Submit new card
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const cardData = { ...newCard, boardId }; // Include boardId in the body
+    const cardData = { ...newCard, boardId };
 
     const res = await fetch(`http://localhost:5000/api/cards`, {
       method: 'POST',
@@ -44,9 +41,9 @@ function BoardPage() {
     if (res.ok) {
       setCards(prev => [data, ...prev]);
       setNewCard({ title: '', description: '', gif: '', author: '' });
+      setShowModal(false);
     }
-};
-
+  };
 
   if (!board) return <p>Loading...</p>;
 
@@ -57,14 +54,17 @@ function BoardPage() {
       <p><strong>Author:</strong> {board.author}</p>
       <p>{board.description}</p>
 
-      <form className="card-form" onSubmit={handleSubmit}>
-        <h3>Add a Card</h3>
-        <input name="title" value={newCard.title} onChange={handleInputChange} placeholder="Card Title" required />
-        <input name="description" value={newCard.description} onChange={handleInputChange} placeholder="Description" required />
-        <input name="gif" value={newCard.gif} onChange={handleInputChange} placeholder="GIF URL" required />
-        <input name="author" value={newCard.author} onChange={handleInputChange} placeholder="Author (optional)" />
-        <button type="submit">Add Card</button>
-      </form>
+      <button className="open-modal-btn" onClick={() => setShowModal(true)}>
+        Add New Card
+      </button>
+
+      <CardModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        cardData={newCard}
+        onChange={handleInputChange}
+        onSubmit={handleSubmit}
+      />
 
       <div className="card-grid">
         {cards.map(card => <CardItem key={card.id} card={card} />)}
