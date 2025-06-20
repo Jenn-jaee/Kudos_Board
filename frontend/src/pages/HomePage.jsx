@@ -15,6 +15,7 @@ function HomePage({ toggleTheme, theme }) {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
 
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -47,10 +48,14 @@ function HomePage({ toggleTheme, theme }) {
   const handleSubmit = (e) => {
   e.preventDefault();
 
+// random image
+
+const randomNumber = Math.random();
+
   const cleanedFormData = {
     ...formData,
     image: formData.image.trim() === ''
-      ? `https://loremflickr.com/500/300/${formData.category}&sig=${Math.floor(Math.random() * 1000)}`
+      ? `https://picsum.photos/200/300?random=${randomNumber}`
       : formData.image,
   };
 

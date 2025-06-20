@@ -49,6 +49,31 @@ const validateCard = (req, res, next) => {
   next();
 };
 
+const validateComment = (req, res, next) => {
+  const { message, cardId, author } = req.body;
+  
+  if (!message || !cardId) {
+    return res.status(400).json({
+      error: 'Missing required fields: message and cardId are required',
+    });
+  }
+
+  if (!Number.isInteger(Number(cardId))) {
+    return res.status(400).json({
+      error: 'cardId must be a valid integer',
+    });
+  }
+
+  // Optional: Validate author length if provided
+  if (author && author.length > 100) {
+    return res.status(400).json({
+      error: 'Author name must be 100 characters or less',
+    });
+  }
+  
+  next();
+};
+
 // Root route
 app.get('/', (req, res) => {
   res.send('🌟 API is running live... 🌟');
@@ -61,7 +86,7 @@ app.post('/api/boards', validateBoard, async (req, res) => {
   let { title, description, category, image, author } = req.body;
 
   if (!image || image.trim() === '') {
-    image = `https://loremflickr.com/500/300/${category}`;  }
+    image = `https://picsum.photos/200/300?random=226`;  }
   
   try {
     const newBoard = await prisma.board.create({
@@ -206,7 +231,7 @@ app.post('/api/cards', validateCard, async (req, res) => {
     const newCard = await prisma.card.create({
       data: cardData,
     });
-    
+
     res.status(201).json(newCard);
   } catch (error) {
     console.error('❌ Error creating card:', error);
@@ -349,6 +374,55 @@ app.delete('/api/cards/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete card' });
   }
 });
+
+// CREATE a comment
+app.post('/api/comments', validateComment, async (req, res) => {
+  const { message, author, cardId } = req.body;
+
+  try {
+    // Check if card exists first
+    const card = await prisma.card.findUnique({
+      where: { id: parseInt(cardId) }
+    });
+    
+    if (!card) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+
+    const comment = await prisma.comment.create({
+      data: {
+        message,
+        author,
+        cardId: parseInt(cardId),
+      },
+    });
+    res.status(201).json(comment);
+  } catch (error) {
+    console.error('❌ Error creating comment:', error);
+    res.status(500).json({ error: 'Failed to create comment' });
+  }
+});
+
+// GET all comments for a specific card
+app.get('/api/cards/:cardId/comments', async (req, res) => {
+  const { cardId } = req.params;
+
+  try {
+    const comments = await prisma.comment.findMany({
+      where: {
+        cardId: parseInt(cardId),
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    res.status(200).json(comments);
+  } catch (error) {
+    console.error('❌ Error fetching comments:', error);
+    res.status(500).json({ error: 'Failed to fetch comments' });
+  }
+});
+
 
 // Graceful shutdown
 process.on('beforeExit', async () => {
