@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BoardCard.css';
 
-const BoardCard = ({ board }) => {
+const BoardCard = ({ board, onDeleteBoard}) => {
   const navigate = useNavigate();
 
   const handleViewClick = () => {
@@ -16,7 +16,7 @@ const BoardCard = ({ board }) => {
       })
         .then(res => {
           if (res.ok) {
-            alert('Board deleted successfully! Please refresh to see changes.');
+            onDeleteBoard(board.id);
           } else {
             alert('Failed to delete board.');
           }

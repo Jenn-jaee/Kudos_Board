@@ -85,7 +85,7 @@ const randomNumber = Math.random();
 };
 
 
-
+//handle delete button
 
   const applyFilter = () => {
     if (filter === "recent") 
@@ -100,6 +100,11 @@ const randomNumber = Math.random();
     
   }};
   const filteredBoards = applyFilter();
+
+  const handleDeleteBoard = (boardId) => {
+    setBoards(prevBoards => prevBoards.filter(board => board.id !== boardId));
+
+  }
 
   return (
     <div className="home-container">
@@ -134,7 +139,7 @@ const randomNumber = Math.random();
       ) : (
         <div className="boards-grid">
           {filteredBoards.map(board => (
-            <BoardCard key={board.id} board={board} />
+            <BoardCard key={board.id} board={board} onDeleteBoard={handleDeleteBoard}/>
           ))}
         </div>
       )}
