@@ -171,4 +171,4 @@ LoremFlickr – alternative fallback for image generation.
 
 ### Shout out
 
-Big shout out to the entire support system—my TA, my instructors. A special thanks to Erika, Ebony and Virsaya, who helped me debug a tricky backend routing issue and encouraged me not to give up when things felt overwhelming.
+Big shout out to the entire support system—my TA, my instructors. A special thanks to Erika, Ebony and Virsaviya, who helped me debug a tricky backend routing issue and encouraged me not to give up when things felt overwhelming.
