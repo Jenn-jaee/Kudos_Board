@@ -2,7 +2,7 @@
 
 Submitted by: **NAME**
 
-Deployed Application (**required**): [Kudos Board Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-board-frontend-mp3l.onrender.com/)
 
 ### Application Features
 
