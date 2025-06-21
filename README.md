@@ -11,9 +11,9 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 ##### Home Page
 
 - [x] **Home Page Display**
-  - [ ] Home page includes the following features:
-    - [ ] Header
-    - [ ] Banner
+  - [x] Home page includes the following features:
+    - [x] Header
+    - [x] Banner
     - [x] Search bar
     - [x] List of boards
     - [x] Footer
@@ -81,7 +81,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
   - [x] When the user clicks the delete button for a card, the card disappears from the grid of cards.
 - [x] **Deployment**
   - [x] Website is deployed via Render.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
 
 #### Stretch Features
 
