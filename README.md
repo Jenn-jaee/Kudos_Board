@@ -112,7 +112,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
     - [x] Color contrast has at least a 4.5:1 ratio using this [color contrast checker](https://webaim.org/resources/contrastchecker/)
   - [x] The chosen mode (light or dark) persists when navigating from home page to board pages and vice versa.
   - [x] When the user first visits the site the theme defaults to light mode.
-  - [] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast in both light and dark mode. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast in both light and dark mode. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
 - [ ] **Pinned Cards**
   - [ ] Users can pin a card to the top of the board.
   - [ ] A Pin button is displayed on each card.
@@ -140,8 +140,6 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 
 
 ### Walkthrough Video
-
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
 
 https://www.loom.com/share/30aa8ac2bff9442a9435c916b866612d?sid=727b1a94-e3fb-401a-bc5b-39e22361676a
 ### Reflection
