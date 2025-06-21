@@ -130,6 +130,14 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 - [ ] The pinned state of a card persists when:
   - [ ] navigating away from and back to the board.
   - [] refreshing the page.
+     
+  - 
+### IMAGE SNAPSHOTS
+![image](https://github.com/user-attachments/assets/3f02c167-ae30-4a40-9523-1b554900a648)
+![image](https://github.com/user-attachments/assets/585c93df-767c-4398-84fb-92bb1fdf1129)
+
+
+
 
 ### Walkthrough Video
 
