@@ -148,20 +148,27 @@ https://www.loom.com/share/30aa8ac2bff9442a9435c916b866612d?sid=727b1a94-e3fb-40
 
 - Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+- Yes, the topics from the labs were crucial in helping me navigate through this project. They introduced foundational skills like working with routes, CRUD operations, form handling, and styling with React. However, I found myself somewhat unprepared when it came to connecting everything across multiple routing files in my backend. I initially attempted a more modular setup by splitting routes into separate files for cleanliness and scalability, but it proved challenging to connect everything seamlessly. After several failed attempts, I decided to consolidate everything into a single index.js file, which finally allowed my backend to communicate properly with the frontend. This experience taught me not just about backend logic, but also about the importance of adaptability when troubleshooting.
+
+
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+With more time, I would have liked to implement the final stretch feature pinning cards to the top of a board. It was a feature I explored, but due to the complexity of the logic and the time constraints, I felt it was risky to attempt on the last day, especially with the risk of breaking my working code. I also would have spent more time refactoring my backend to be better organized and more scalable perhaps retrying the modular routing strategy with a clearer understanding of how to manage dependencies and middleware across multiple files.
 
 - Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+During the demo, I was proud of how smoothly my dark mode toggle, comment functionality, and real-time delete action worked. These were some of the more interactive stretch features that made my app feel polished and complete. One thing that didn’t go quite as planned was my earlier delete functionality for boards—it required users to refresh the page manually to reflect changes, which I later fixed by updating the frontend state without relying on a reload. Watching my peers’ demos also inspired me, especially seeing different approaches to user feedback and UI organization. It gave me ideas for future enhancements.
+
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+Giphy API – for fetching GIFs.
+
+Unsplash Source – for randomized board images.
+
+LoremFlickr – alternative fallback for image generation.
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Big shout out to the entire support system—my TA, my instructors. A special thanks to Erika, Ebony and Virsaya, who helped me debug a tricky backend routing issue and encouraged me not to give up when things felt overwhelming.
